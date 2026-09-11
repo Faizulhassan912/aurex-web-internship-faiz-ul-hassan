@@ -228,7 +228,7 @@ body {
     /* padding: 1.5rem; */
     /* border-radius: 20px; */
     /* border-radius: rgb(130, 174, 245); */
-    
+
     /* box-shadow: rgb(118, 166, 242); */
     flex-shrink: 0;
 }
@@ -491,6 +491,179 @@ body {
     }
 }
 
+/* ==========================================================================
+   Desktop Defaults (Drawer & Hamburger Hidden)
+   ========================================================================== */
+.menu-toggle,
+.hamburger-btn,
+.drawer-header,
+.drawer-close-btn,
+.drawer-overlay {
+    display: none;
+}
+
+/* ==========================================================================
+   Mobile View (Screen width <= 768px): Left-Side Drawer & Realigned Navbar
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.6rem 0;
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: row;
+        /* Strict single row layout */
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 0.5rem 1.25rem;
+        width: 100%;
+    }
+
+    /* 1. Hamburger Icon on Left */
+    .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        cursor: pointer;
+        z-index: 1001;
+        flex-shrink: 0;
+    }
+
+    .hamburger-btn .bar {
+        height: 2.5px;
+        width: 100%;
+        background-color: var(--secondary);
+        border-radius: 2px;
+        transition: var(--transition);
+    }
+
+    /* Logo adjacent to hamburger */
+    .brand-logo {
+        font-size: 1.35rem;
+    }
+
+    /* 2. Side Drawer (Sliding in from LEFT) */
+    .nav-drawer {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        /* Hidden on the left */
+        right: auto;
+        width: 280px;
+        height: 100vh;
+        background: #ffffff;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+        padding: 1.5rem 1.5rem 2rem 1.5rem;
+        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1002;
+    }
+
+    /* Drawer Header (Title + Cross button) */
+    .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .drawer-title {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--secondary);
+    }
+
+    .drawer-close-btn {
+        display: block;
+        font-size: 1.85rem;
+        line-height: 1;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .drawer-close-btn:hover {
+        color: var(--secondary);
+    }
+
+    /* Navigation Links */
+    .nav-drawer .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+    }
+
+    .nav-drawer .nav-links li {
+        width: 100%;
+    }
+
+    .nav-drawer .nav-links a {
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--secondary);
+        display: block;
+        width: 100%;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid var(--border-color);
+        text-align: left;
+    }
+
+    .nav-drawer .nav-links a:hover {
+        color: var(--primary);
+    }
+
+    /* 3. Contact Button Anchored at the BOTTOM of Drawer */
+    .drawer-footer {
+        margin-top: auto;
+        /* Pushes button to bottom */
+        width: 100%;
+        padding-top: 1.5rem;
+    }
+
+    .drawer-footer .nav-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem 1rem !important;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    /* 4. Dark Overlay */
+    .drawer-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: 1000;
+        cursor: pointer;
+    }
+
+    /* 5. Trigger: Checkbox Checked -> Slide Drawer from Left */
+    .menu-toggle:checked~.nav-drawer {
+        left: 0;
+        /* Slides open from left */
+    }
+
+    .menu-toggle:checked~.drawer-overlay {
+        display: block;
+    }
+}
+
 /* Mobile View (max-width: 640px) */
 @media (max-width: 640px) {
     .nav-container {
@@ -552,4 +725,50 @@ body {
 /* Card 4 Icon: Tools & Workflow (Amber / Orange) */
 .skills-grid .skill-card:nth-child(4) .card-icon {
     color: #ea580c;
+}
+
+/* ==========================================================================
+   Permanent Mobile Navbar Fix: Inline Hamburger on Left + Logo
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.75rem 1rem !important;
+    }
+
+    .nav-container {
+        display: flex !important;
+        flex-direction: row !important; /* Forces single horizontal line */
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 1rem !important;
+        width: 100% !important;
+    }
+
+    /* Hamburger Icon exactly on Left */
+    .hamburger-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        width: 24px !important;
+        height: 18px !important;
+        cursor: pointer !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .hamburger-btn .bar {
+        display: block !important;
+        height: 2.5px !important;
+        width: 100% !important;
+        background-color: var(--secondary) !important;
+        border-radius: 2px !important;
+    }
+
+    /* Logo beside the Hamburger */
+    .brand-logo {
+        font-size: 1.35rem !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+    }
 }
