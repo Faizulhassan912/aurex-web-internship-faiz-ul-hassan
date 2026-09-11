@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faiz Ul Hassan | Full-Stack Web Developer Portfolio</title>
-    <!-- Google Fonts -->
+
+    <!-- Branded SVG Favicon -->
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='60' fill='%23ffffff'>F</text></svg>">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- CSS Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,14 +25,12 @@
 <body>
 
     <!-- Navigation Header -->
-    <!-- Navigation Header -->
-    <!-- Navigation Header -->
     <header class="navbar">
         <div class="nav-container">
-            <!-- Hidden Checkbox for Mobile Menu Toggle -->
+            <!-- Hidden Checkbox for Mobile Toggle -->
             <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
-            <!-- Hamburger Icon Button (Placed on Left of Logo on Mobile) -->
+            <!-- Hamburger Button (Left on Mobile) -->
             <label for="menu-toggle" class="hamburger-btn" aria-label="Toggle Menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -37,11 +40,10 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-logo">Faiz<span>.dev</span></a>
 
-            <!-- Left-sliding Navigation Drawer -->
+            <!-- Navigation Bar & Drawer Container -->
             <nav class="nav-drawer">
                 <div class="drawer-header">
                     <span class="drawer-title">Menu</span>
-                    <!-- Close button on top-right of drawer -->
                     <label for="menu-toggle" class="drawer-close-btn">&times;</label>
                 </div>
 
@@ -54,16 +56,21 @@
                             onclick="document.getElementById('menu-toggle').checked = false;">Education</a></li>
                     <li><a href="#projects"
                             onclick="document.getElementById('menu-toggle').checked = false;">Projects</a></li>
+                    <!-- Desktop Inline Contact Button -->
+                    <li class="contact-desktop-item">
+                        <a href="#contact" class="btn btn-primary nav-btn"
+                            onclick="document.getElementById('menu-toggle').checked = false;">Contact</a>
+                    </li>
                 </ul>
 
-                <!-- Contact Button anchored at bottom of drawer -->
+                <!-- Mobile Drawer Bottom Contact Button -->
                 <div class="drawer-footer">
                     <a href="#contact" class="btn btn-primary nav-btn"
                         onclick="document.getElementById('menu-toggle').checked = false;">Contact</a>
                 </div>
             </nav>
 
-            <!-- Dark Background Overlay -->
+            <!-- Mobile Backdrop Overlay -->
             <label for="menu-toggle" class="drawer-overlay"></label>
         </div>
     </header>

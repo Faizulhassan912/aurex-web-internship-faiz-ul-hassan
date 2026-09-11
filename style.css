@@ -78,12 +78,12 @@ body {
     font-size: 1rem;
 }
 
-/* 4. Navbar (Flexbox) */
+/* 4. Navbar (Desktop Default - Single Line Flexbox) */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     transition: var(--transition);
@@ -92,7 +92,7 @@ body {
 .nav-container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 1rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,11 +110,22 @@ body {
     color: var(--primary);
 }
 
+/* Desktop Drawer is inline */
+.nav-drawer {
+    display: flex;
+    align-items: center;
+}
+
 .nav-links {
     list-style: none;
     display: flex;
     align-items: center;
     gap: 1.75rem;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a {
@@ -130,15 +141,27 @@ body {
 }
 
 .nav-btn {
-    padding: 0.5rem 1.1rem;
+    padding: 0.5rem 1rem;
     background-color: var(--primary);
     color: #ffffff !important;
     border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .nav-btn:hover {
     background-color: var(--primary-hover);
     color: #ffffff;
+}
+
+/* Hide mobile-specific items on desktop */
+.menu-toggle,
+.hamburger-btn,
+.drawer-header,
+.drawer-close-btn,
+.drawer-footer,
+.drawer-overlay {
+    display: none;
 }
 
 /* 5. Hero Section (Flexbox Layout) */
@@ -224,12 +247,6 @@ body {
 }
 
 .hero-image-wrapper {
-    /* background: rgb(224, 234, 250); */
-    /* padding: 1.5rem; */
-    /* border-radius: 20px; */
-    /* border-radius: rgb(130, 174, 245); */
-
-    /* box-shadow: rgb(118, 166, 242); */
     flex-shrink: 0;
 }
 
@@ -238,8 +255,8 @@ body {
     height: 280px;
     object-fit: cover;
     border-radius: var(--radius-lg);
-    /* box-shadow: var(--shadow-lg); */
     border: 4px solid #e4e4f6;
+    box-shadow: var(--shadow-lg);
 }
 
 /* 6. Cards & Grid Layouts (CSS Grid) */
@@ -287,6 +304,23 @@ body {
     color: var(--text-muted);
     font-size: 0.9rem;
     line-height: 1.5;
+}
+
+/* Colored Icons on Clean White Cards */
+.skills-grid .skill-card:nth-child(1) .card-icon {
+    color: #2563eb;
+}
+
+.skills-grid .skill-card:nth-child(2) .card-icon {
+    color: #9333ea;
+}
+
+.skills-grid .skill-card:nth-child(3) .card-icon {
+    color: #16a34a;
+}
+
+.skills-grid .skill-card:nth-child(4) .card-icon {
+    color: #ea580c;
 }
 
 /* Project Card Specifics */
@@ -466,10 +500,10 @@ body {
 }
 
 /* ==========================================================================
-   10. Responsive Media Queries (Mobile-First / Breakpoints)
+   10. Responsive Media Queries (Clean Separation for Tablet & Mobile)
    ========================================================================== */
 
-/* Tablet View (max-width: 900px) */
+/* Tablet & Smaller (<= 900px) */
 @media (max-width: 900px) {
     .hero-section {
         flex-direction: column-reverse;
@@ -491,155 +525,134 @@ body {
     }
 }
 
-/* ==========================================================================
-   Desktop Defaults (Drawer & Hamburger Hidden)
-   ========================================================================== */
-.menu-toggle,
-.hamburger-btn,
-.drawer-header,
-.drawer-close-btn,
-.drawer-overlay {
-    display: none;
-}
-
-/* ==========================================================================
-   Mobile View (Screen width <= 768px): Left-Side Drawer & Realigned Navbar
-   ========================================================================== */
+/* Mobile & Side-Drawer View (<= 768px) */
 @media (max-width: 768px) {
     .navbar {
-        padding: 0.6rem 0;
+        padding: 0.65rem 1rem !important;
     }
 
+    /* Fixed single row navbar on mobile */
     .nav-container {
-        display: flex;
-        flex-direction: row;
-        /* Strict single row layout */
-        justify-content: flex-start;
-        align-items: center;
-        gap: 1.25rem;
-        padding: 0.5rem 1.25rem;
-        width: 100%;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        padding: 0 !important;
     }
 
-    /* 1. Hamburger Icon on Left */
+    /* Hamburger on Left */
     .hamburger-btn {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 24px;
-        height: 18px;
-        cursor: pointer;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        width: 24px !important;
+        height: 18px !important;
+        cursor: pointer !important;
         z-index: 1001;
-        flex-shrink: 0;
+        flex-shrink: 0 !important;
     }
 
     .hamburger-btn .bar {
-        height: 2.5px;
-        width: 100%;
-        background-color: var(--secondary);
-        border-radius: 2px;
-        transition: var(--transition);
+        display: block !important;
+        height: 2.5px !important;
+        width: 100% !important;
+        background-color: var(--secondary) !important;
+        border-radius: 2px !important;
     }
 
-    /* Logo adjacent to hamburger */
     .brand-logo {
-        font-size: 1.35rem;
+        font-size: 1.35rem !important;
+        line-height: 1 !important;
     }
 
-    /* 2. Side Drawer (Sliding in from LEFT) */
+    /* Side Drawer sliding from Left */
     .nav-drawer {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: -100%;
-        /* Hidden on the left */
-        right: auto;
-        width: 280px;
-        height: 100vh;
-        background: #ffffff;
-        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
-        padding: 1.5rem 1.5rem 2rem 1.5rem;
-        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 1002;
+        display: flex !important;
+        flex-direction: column !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 280px !important;
+        height: 100vh !important;
+        background: #ffffff !important;
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15) !important;
+        padding: 1.5rem !important;
+        transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        z-index: 1002 !important;
     }
 
-    /* Drawer Header (Title + Cross button) */
+    /* Drawer Header */
     .drawer-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-bottom: 1rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid var(--border-color);
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 1px solid var(--border-color) !important;
     }
 
     .drawer-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--secondary);
+        font-size: 1.15rem !important;
+        font-weight: 700 !important;
+        color: var(--secondary) !important;
     }
 
     .drawer-close-btn {
-        display: block;
-        font-size: 1.85rem;
-        line-height: 1;
-        color: var(--text-muted);
-        cursor: pointer;
-        transition: var(--transition);
+        display: block !important;
+        font-size: 1.85rem !important;
+        line-height: 1 !important;
+        color: var(--text-muted) !important;
+        cursor: pointer !important;
     }
 
-    .drawer-close-btn:hover {
-        color: var(--secondary);
-    }
-
-    /* Navigation Links */
+    /* Vertical Links inside Drawer */
     .nav-drawer .nav-links {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        width: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
+        width: 100% !important;
     }
 
     .nav-drawer .nav-links li {
-        width: 100%;
+        width: 100% !important;
     }
 
     .nav-drawer .nav-links a {
-        font-size: 1.05rem;
-        font-weight: 500;
-        color: var(--secondary);
-        display: block;
-        width: 100%;
-        padding: 0.85rem 0;
-        border-bottom: 1px solid var(--border-color);
-        text-align: left;
+        font-size: 1.05rem !important;
+        font-weight: 500 !important;
+        color: var(--secondary) !important;
+        display: block !important;
+        width: 100% !important;
+        padding: 0.85rem 0 !important;
+        border-bottom: 1px solid var(--border-color) !important;
     }
 
-    .nav-drawer .nav-links a:hover {
-        color: var(--primary);
+    /* Hide desktop inline contact link inside mobile drawer */
+    .contact-desktop-item {
+        display: none !important;
     }
 
-    /* 3. Contact Button Anchored at the BOTTOM of Drawer */
+    /* Bottom Contact Button inside Drawer */
     .drawer-footer {
-        margin-top: auto;
-        /* Pushes button to bottom */
-        width: 100%;
-        padding-top: 1.5rem;
+        display: block !important;
+        margin-top: auto !important;
+        width: 100% !important;
+        padding-top: 1.5rem !important;
     }
 
     .drawer-footer .nav-btn {
-        display: block;
-        width: 100%;
-        text-align: center;
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
         padding: 0.85rem 1rem !important;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: 1rem !important;
     }
 
-    /* 4. Dark Overlay */
+    /* Dark Overlay */
     .drawer-overlay {
         display: none;
         position: fixed;
@@ -653,30 +666,16 @@ body {
         cursor: pointer;
     }
 
-    /* 5. Trigger: Checkbox Checked -> Slide Drawer from Left */
+    /* Toggle Drawer States */
     .menu-toggle:checked~.nav-drawer {
-        left: 0;
-        /* Slides open from left */
+        left: 0 !important;
     }
 
     .menu-toggle:checked~.drawer-overlay {
-        display: block;
-    }
-}
-
-/* Mobile View (max-width: 640px) */
-@media (max-width: 640px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 1rem;
+        display: block !important;
     }
 
-    .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
+    /* Form and Footer Mobile adjust */
     .hero-title {
         font-size: 2.1rem;
     }
@@ -694,81 +693,5 @@ body {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
-    }
-}
-
-/* ==========================================================================
-   Clean Cards with Distinct Icon Colors
-   ========================================================================== */
-
-/* Tamam cards bilkul clean white aur original simple styling par */
-.skills-grid .skill-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-}
-
-/* Card 1 Icon: Frontend (Blue) */
-.skills-grid .skill-card:nth-child(1) .card-icon {
-    color: #2563eb;
-}
-
-/* Card 2 Icon: Backend (Purple) */
-.skills-grid .skill-card:nth-child(2) .card-icon {
-    color: #9333ea;
-}
-
-/* Card 3 Icon: Databases (Green) */
-.skills-grid .skill-card:nth-child(3) .card-icon {
-    color: #16a34a;
-}
-
-/* Card 4 Icon: Tools & Workflow (Amber / Orange) */
-.skills-grid .skill-card:nth-child(4) .card-icon {
-    color: #ea580c;
-}
-
-/* ==========================================================================
-   Permanent Mobile Navbar Fix: Inline Hamburger on Left + Logo
-   ========================================================================== */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0.75rem 1rem !important;
-    }
-
-    .nav-container {
-        display: flex !important;
-        flex-direction: row !important; /* Forces single horizontal line */
-        align-items: center !important;
-        justify-content: flex-start !important;
-        gap: 1rem !important;
-        width: 100% !important;
-    }
-
-    /* Hamburger Icon exactly on Left */
-    .hamburger-btn {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: space-between !important;
-        width: 24px !important;
-        height: 18px !important;
-        cursor: pointer !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        flex-shrink: 0 !important;
-    }
-
-    .hamburger-btn .bar {
-        display: block !important;
-        height: 2.5px !important;
-        width: 100% !important;
-        background-color: var(--secondary) !important;
-        border-radius: 2px !important;
-    }
-
-    /* Logo beside the Hamburger */
-    .brand-logo {
-        font-size: 1.35rem !important;
-        line-height: 1 !important;
-        margin: 0 !important;
     }
 }
