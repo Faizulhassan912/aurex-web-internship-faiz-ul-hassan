@@ -1,7 +1,8 @@
 /* ==========================================================================
-   AUREX Internship - Week 2 Master Stylesheet
+   AUREX Internship - Week 3 Master Stylesheet
+   File: styles/main.css
    Author: Faiz Ul Hassan
-   Theme: Modern Tech Portfolio (Responsive Flexbox & CSS Grid)
+   Theme: Modern Tech Portfolio with Fluid Layouts & Advanced Grid
    ========================================================================== */
 
 /* 1. Root Design Tokens & Variables */
@@ -48,7 +49,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* 3. Reusable Typography & Containers */
+/* 3. Reusable Typography & Fluid Containers */
 .main-content {
     max-width: 1100px;
     margin: 0 auto;
@@ -66,7 +67,7 @@ body {
 }
 
 .section-header h2 {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2.5vw, 2.25rem);
     font-weight: 700;
     color: var(--secondary);
     margin-bottom: 0.5rem;
@@ -78,7 +79,7 @@ body {
     font-size: 1rem;
 }
 
-/* 4. Navbar (Desktop Default - Single Line Flexbox) */
+/* 4. Desktop Navigation Bar */
 .navbar {
     position: sticky;
     top: 0;
@@ -86,7 +87,6 @@ body {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
-    transition: var(--transition);
 }
 
 .nav-container {
@@ -110,7 +110,6 @@ body {
     color: var(--primary);
 }
 
-/* Desktop Drawer is inline */
 .nav-drawer {
     display: flex;
     align-items: center;
@@ -141,7 +140,7 @@ body {
 }
 
 .nav-btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.25rem;
     background-color: var(--primary);
     color: #ffffff !important;
     border-radius: var(--radius-sm);
@@ -151,10 +150,9 @@ body {
 
 .nav-btn:hover {
     background-color: var(--primary-hover);
-    color: #ffffff;
 }
 
-/* Hide mobile-specific items on desktop */
+/* Mobile defaults hidden on desktop */
 .menu-toggle,
 .hamburger-btn,
 .drawer-header,
@@ -189,7 +187,7 @@ body {
 }
 
 .hero-title {
-    font-size: 2.75rem;
+    font-size: clamp(2rem, 4vw, 2.85rem);
     font-weight: 800;
     line-height: 1.2;
     color: var(--secondary);
@@ -220,7 +218,6 @@ body {
     font-weight: 600;
     border-radius: var(--radius-sm);
     text-decoration: none;
-    transition: var(--transition);
     border: 1px solid transparent;
     cursor: pointer;
 }
@@ -232,7 +229,6 @@ body {
 
 .btn-primary:hover {
     background-color: var(--primary-hover);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
@@ -243,7 +239,6 @@ body {
 
 .btn-secondary:hover {
     background-color: #f1f5f9;
-    border-color: #cbd5e1;
 }
 
 .hero-image-wrapper {
@@ -259,14 +254,14 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-/* 6. Cards & Grid Layouts (CSS Grid) */
+/* 6. Advanced CSS Grid Layouts (auto-fit & minmax) */
 .grid-layout {
     display: grid;
     gap: 1.5rem;
 }
 
 .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .projects-grid {
@@ -279,13 +274,6 @@ body {
     border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: #cbd5e1;
 }
 
 .skill-card .card-icon {
@@ -306,7 +294,7 @@ body {
     line-height: 1.5;
 }
 
-/* Colored Icons on Clean White Cards */
+/* Card Icons */
 .skills-grid .skill-card:nth-child(1) .card-icon {
     color: #2563eb;
 }
@@ -500,10 +488,8 @@ body {
 }
 
 /* ==========================================================================
-   10. Responsive Media Queries (Clean Separation for Tablet & Mobile)
+   10. Responsive Media Queries
    ========================================================================== */
-
-/* Tablet & Smaller (<= 900px) */
 @media (max-width: 900px) {
     .hero-section {
         flex-direction: column-reverse;
@@ -525,13 +511,11 @@ body {
     }
 }
 
-/* Mobile & Side-Drawer View (<= 768px) */
 @media (max-width: 768px) {
     .navbar {
         padding: 0.65rem 1rem !important;
     }
 
-    /* Fixed single row navbar on mobile */
     .nav-container {
         display: flex !important;
         flex-direction: row !important;
@@ -542,7 +526,6 @@ body {
         padding: 0 !important;
     }
 
-    /* Hamburger on Left */
     .hamburger-btn {
         display: flex !important;
         flex-direction: column !important;
@@ -567,7 +550,6 @@ body {
         line-height: 1 !important;
     }
 
-    /* Side Drawer sliding from Left */
     .nav-drawer {
         display: flex !important;
         flex-direction: column !important;
@@ -583,7 +565,6 @@ body {
         z-index: 1002 !important;
     }
 
-    /* Drawer Header */
     .drawer-header {
         display: flex !important;
         justify-content: space-between !important;
@@ -608,7 +589,6 @@ body {
         cursor: pointer !important;
     }
 
-    /* Vertical Links inside Drawer */
     .nav-drawer .nav-links {
         display: flex !important;
         flex-direction: column !important;
@@ -623,7 +603,7 @@ body {
 
     .nav-drawer .nav-links a {
         font-size: 1.05rem !important;
-        font-weight: 500 !important;
+        font-weight: 500;
         color: var(--secondary) !important;
         display: block !important;
         width: 100% !important;
@@ -631,12 +611,10 @@ body {
         border-bottom: 1px solid var(--border-color) !important;
     }
 
-    /* Hide desktop inline contact link inside mobile drawer */
     .contact-desktop-item {
         display: none !important;
     }
 
-    /* Bottom Contact Button inside Drawer */
     .drawer-footer {
         display: block !important;
         margin-top: auto !important;
@@ -652,7 +630,6 @@ body {
         font-size: 1rem !important;
     }
 
-    /* Dark Overlay */
     .drawer-overlay {
         display: none;
         position: fixed;
@@ -666,18 +643,12 @@ body {
         cursor: pointer;
     }
 
-    /* Toggle Drawer States */
     .menu-toggle:checked~.nav-drawer {
         left: 0 !important;
     }
 
     .menu-toggle:checked~.drawer-overlay {
         display: block !important;
-    }
-
-    /* Form and Footer Mobile adjust */
-    .hero-title {
-        font-size: 2.1rem;
     }
 
     .form-row {
