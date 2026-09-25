@@ -4,259 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faiz Ul Hassan | Full-Stack Web Developer Portfolio</title>
+    <title>Task Manager | AUREX Full-Stack Internship</title>
 
-    <!-- Branded SVG Favicon -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='60' fill='%23ffffff'>F</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232563eb'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='60' fill='%23ffffff'>T</text></svg>">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- CSS Stylesheets (Split Structure) -->
-    <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="style/animation.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
 
-    <!-- Navigation Header -->
-    <header class="navbar">
-        <div class="nav-container">
-            <!-- Hidden Checkbox for Mobile Toggle -->
-            <input type="checkbox" id="menu-toggle" class="menu-toggle">
-
-            <!-- Hamburger Button (Left on Mobile) -->
-            <label for="menu-toggle" class="hamburger-btn" aria-label="Toggle Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </label>
-
-            <!-- Brand Logo -->
-            <a href="#" class="brand-logo">Faiz<span>.dev</span></a>
-
-            <!-- Navigation Bar & Drawer Container -->
-            <nav class="nav-drawer">
-                <div class="drawer-header">
-                    <span class="drawer-title">Menu</span>
-                    <label for="menu-toggle" class="drawer-close-btn">&times;</label>
-                </div>
-
-                <ul class="nav-links">
-                    <li><a href="#about" onclick="document.getElementById('menu-toggle').checked = false;">About</a>
-                    </li>
-                    <li><a href="#skills" onclick="document.getElementById('menu-toggle').checked = false;">Skills</a>
-                    </li>
-                    <li><a href="#education"
-                            onclick="document.getElementById('menu-toggle').checked = false;">Education</a></li>
-                    <li><a href="#projects"
-                            onclick="document.getElementById('menu-toggle').checked = false;">Projects</a></li>
-                    <!-- Desktop Inline Contact Button -->
-                    <li class="contact-desktop-item">
-                        <a href="#contact" class="btn btn-primary nav-btn"
-                            onclick="document.getElementById('menu-toggle').checked = false;">Contact</a>
-                    </li>
-                </ul>
-
-                <!-- Mobile Drawer Bottom Contact Button -->
-                <div class="drawer-footer">
-                    <a href="#contact" class="btn btn-primary nav-btn"
-                        onclick="document.getElementById('menu-toggle').checked = false;">Contact</a>
-                </div>
-            </nav>
-
-            <!-- Mobile Backdrop Overlay -->
-            <label for="menu-toggle" class="drawer-overlay"></label>
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand">
+                <i class="fa-solid fa-list-check brand-icon"></i>
+                <h1>Task<span>Flow</span></h1>
+            </div>
+            <p class="author-tag">Faiz Ul Hassan &bull; Week 4</p>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Hero / About Section -->
-        <section id="about" class="section hero-section">
-            <div class="hero-content">
-                <span class="badge">Full-Stack Web Developer</span>
-                <h1 class="hero-title">Hi, I'm <span>Faiz Ul Hassan</span></h1>
-                <p class="hero-description">
-                    A results-driven Full-Stack Developer specializing in React.js, Node.js, PHP, and scalable database
-                    architectures. I build responsive, robust, and clean digital experiences with modern web
-                    technologies.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="#projects" class="btn btn-secondary">View Work</a>
+    <main class="main-container">
+        <section class="task-form-card">
+            <h2>Manage Your Tasks</h2>
+            <form id="task-form" novalidate>
+                <input type="hidden" id="task-edit-id" value="">
+
+                <div class="input-row">
+                    <div class="input-wrapper">
+                        <input type="text" id="task-title" placeholder="What needs to be accomplished today?"
+                            autocomplete="off">
+                        <span id="title-error" class="error-msg"></span>
+                    </div>
+
+                    <div class="priority-wrapper">
+                        <select id="task-priority" aria-label="Task Priority">
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="submit-btn" class="btn btn-primary">
+                        <i class="fa-solid fa-plus btn-icon"></i>
+                        <span id="submit-text">Add Task</span>
+                    </button>
                 </div>
+            </form>
+        </section>
+
+        <section class="controls-panel">
+            <div class="filter-group">
+                <button type="button" class="filter-btn active" data-filter="all">All</button>
+                <button type="button" class="filter-btn" data-filter="pending">Pending</button>
+                <button type="button" class="filter-btn" data-filter="completed">Completed</button>
             </div>
-            <div class="hero-image-wrapper">
-                <img src="profile.png" alt="Faiz Ul Hassan - Professional Profile" class="profile-img">
+
+            <div class="stats-badge">
+                <span id="task-counter">0 tasks remaining</span>
             </div>
         </section>
 
-        <!-- Skills Section (CSS Grid) -->
-        <section id="skills" class="section">
-            <div class="section-header">
-                <h2>Technical Skills</h2>
-                <p>Core technologies and toolchains I work with daily.</p>
-            </div>
-            <div class="grid-layout skills-grid">
-                <!-- Frontend Icon -->
-                <div class="card skill-card">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h3>Frontend</h3>
-                    <p>HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Bootstrap</p>
-                </div>
+        <section class="tasks-section">
+            <ul id="task-list" class="task-list" aria-live="polite"></ul>
 
-                <!-- Backend Icon -->
-                <div class="card skill-card">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
-                    <h3>Backend</h3>
-                    <p>Node.js, Express.js, PHP (MVC Architecture), RESTful APIs</p>
-                </div>
-
-                <!-- Databases Icon -->
-                <div class="card skill-card">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-database"></i>
-                    </div>
-                    <h3>Databases</h3>
-                    <p>MySQL, MongoDB, Relational Schema Normalization & Queries</p>
-                </div>
-
-                <!-- Tools Icon -->
-                <div class="card skill-card">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
-                    <h3>Tools & Workflow</h3>
-                    <p>Git, GitHub CLI, VS Code, Postman, Vercel, XAMPP</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education" class="section">
-            <div class="section-header">
-                <h2>Education</h2>
-                <p>My academic foundation in computer science and software development.</p>
-            </div>
-            <div class="table-container">
-                <table class="styled-table">
-                    <thead>
-                        <tr>
-                            <th>Degree / Qualification</th>
-                            <th>Institution</th>
-                            <th>Tenure</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>BS Information Technology (BSIT)</strong></td>
-                            <td>Govt. Islamia Graduate College, Civil Lines (Univ. of the Punjab)</td>
-                            <td><span class="timeline-badge">2022 - 2026</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Intermediate in Computer Science (ICS)</strong></td>
-                            <td>Board of Intermediate & Secondary Education (BISE) Lahore</td>
-                            <td><span class="timeline-badge">Completed</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- Projects / Experience Section (CSS Grid) -->
-        <section id="projects" class="section">
-            <div class="section-header">
-                <h2>Featured Experience & Projects</h2>
-                <p>Demonstrated software architecture and deployment workflows.</p>
-            </div>
-            <div class="grid-layout projects-grid">
-                <article class="card project-card">
-                    <h3>Restaurant Automation System (QUICKBITE)</h3>
-                    <p class="project-role">Full-Stack Developer (Final Year Project)</p>
-                    <p class="project-desc">
-                        Engineered an end-to-end management ecosystem featuring QR table ordering, kitchen display
-                        screens, cashier point-of-sale, and real-time updates via React, PHP, MySQL, and WebSockets.
-                    </p>
-                    <div class="tags">
-                        <span>React.js</span>
-                        <span>PHP MVC</span>
-                        <span>MySQL</span>
-                        <span>WebSockets</span>
-                    </div>
-                </article>
-
-                <article class="card project-card">
-                    <h3>Commercial E-Commerce Platform</h3>
-                    <p class="project-role">Full-Stack Developer & Technical Lead</p>
-                    <p class="project-desc">
-                        Built high-converting commercial web portals with catalog displays, automated WhatsApp order
-                        pipelines, and meta tracking integrations deployed on cloud infrastructure.
-                    </p>
-                    <div class="tags">
-                        <span>JavaScript</span>
-                        <span>REST API</span>
-                        <span>Tailwind CSS</span>
-                        <span>Vercel</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section contact-section">
-            <div class="section-header">
-                <h2>Let's Connect</h2>
-                <p>Have a project inquiry or an internship opportunity? Send a message.</p>
-            </div>
-            <div class="contact-wrapper">
-                <form action="#" method="post" class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Faiz Ul Hassan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" placeholder="faiz@example.com" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject"
-                            placeholder="Full-Stack Opportunity / Collaboration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5"
-                            placeholder="Share your project requirements or inquiry..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
-                </form>
+            <div id="empty-state" class="empty-state hidden">
+                <i class="fa-regular fa-clipboard empty-icon"></i>
+                <p>No tasks found in this view.</p>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p>&copy; 2026 Faiz Ul Hassan. Built for AUREX Engineering Internship.</p>
-            <div class="footer-links">
-                <a href="https://github.com/Faizulhassan912" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="mailto:contact@faizulhassan.dev">Email</a>
-            </div>
-        </div>
-    </footer>
-
+    <script src="scripts/main.js"></script>
 </body>
 
 </html>
